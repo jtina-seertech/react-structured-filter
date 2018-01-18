@@ -161,16 +161,16 @@ var TypeaheadTokenizer = React.createClass({
 
   _addTokenForValue: function(value) {
     if (this.state.category == "") {
-      this.setState({category: value});
+      this.setState({category: value, operator:"=="});
       this.refs.typeahead.setEntryText("");
       return;
     }
 
-    if (this.state.operator == "") {
+    /*if (this.state.operator == "") {
       this.setState({operator: value});
       this.refs.typeahead.setEntryText("");
       return;
-    }
+    }*/
 
     value = {"category":this.state.category,"operator":this.state.operator,"value":value};
 
