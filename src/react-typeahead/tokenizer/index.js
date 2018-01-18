@@ -70,13 +70,13 @@ var TypeaheadTokenizer = React.createClass({
         categories.push(this.props.options[i].category);
       }
       return categories;
-    } else if (this.state.operator=="") {
+    /*} else if (this.state.operator=="") {
       categoryType = this._getCategoryType();
 
       if (categoryType == "text") { return ["==", "!=", "contains", "!contains"];}
       else if (categoryType == "textoptions") {return ["==", "!="];}
       else if  (categoryType == "number" || categoryType == "date") {return ["==", "!=", "<", "<=", ">", ">="];}
-      else {console.log("WARNING: Unknown category type in tokenizer");};
+      else {console.log("WARNING: Unknown category type in tokenizer");};*/
 
     } else {
       var options = this._getCategoryOptions();
@@ -161,21 +161,22 @@ var TypeaheadTokenizer = React.createClass({
 
   _addTokenForValue: function(value) {
     if (this.state.category == "") {
-      this.setState({category: value});
+      this.setState({category: value,operator: "=="});
       this.refs.typeahead.setEntryText("");
       return;
     }
 
-    if (this.state.operator == "") {
+    /*if (this.state.operator == "") {
       this.setState({operator: value});
       this.refs.typeahead.setEntryText("");
       return;
-    }
+    }*/
 
     value = {"category":this.state.category,"operator":this.state.operator,"value":value};
 
     this.state.selected.push(value);
     this.setState({selected: this.state.selected});
+    console.log("selected >>>" + this.state.selected);
     this.refs.typeahead.setEntryText("");
     this.props.onTokenAdd(this.state.selected);
 
